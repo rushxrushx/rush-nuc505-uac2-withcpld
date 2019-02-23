@@ -20,6 +20,9 @@ extern uint8_t  g_set_timer_flag;
  *
  * @details     This function is the USBD ISR
  */
+ 
+u16 EPA_event=0;
+ 
 void USBD_IRQHandler_10(void)
 {
     __IO uint32_t IrqStL, IrqSt;
@@ -173,10 +176,23 @@ void USBD_IRQHandler_10(void)
             USBD_CLR_CEP_INT_FLAG(USBD_CEPINTSTS_BUFEMPTYIF_Msk);
         }
     }
-
+////EPA:feedback
     if (IrqStL & USBD_GINTSTS_EPAIF_Msk) {
         IrqSt = USBD->EP[EPA].EPINTSTS & USBD->EP[EPA].EPINTEN;
         USBD_CLR_EP_INT_FLAG(EPA, IrqSt);
+		
+		// 初始化时候仅开启了tx packet 中断，这里不做判断	
+		// 现在EPA已经发走
+		// 发送缓冲为空 
+		// HOST没有data可以读取了
+		
+         EPB_Handler();//数据接收(播放音频)
+		 
+		//现在EPB的数据已经安全拿走
+		//填充EPA
+		 
+		 EPA_Handler10();//反馈发送
+		 
     }
     /* EPB (Isochronous OUT Endpoint) */
     if (IrqStL & USBD_GINTSTS_EPBIF_Msk) {
@@ -186,7 +202,9 @@ void USBD_IRQHandler_10(void)
             USBD_CLR_EP_INT_FLAG(EPB, USBD_EPINTSTS_RXPKIF_Msk);				
 
             /* Read Audio data from EPB for ISO OUT (Play) */								
-            EPB_Handler();
+
+			
+
         }
     }
     

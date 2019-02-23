@@ -251,7 +251,7 @@ __align(4) uint8_t gu8ConfigDescriptor_10[] = {
                         */				
     0x03,               /* bNumInterfaces - Interface 0, Interface 1 (Speaker), Interface 2 (HID) */
 #else
-    0xF5, 0x00,         /* wTotalLength */
+    0x77, 0x00,         /* wTotalLength */
                         /* 
                            Configuration Descriptor                    (0x09)	
                            Interface Descriptor (Audio Class)          (0x09)
@@ -262,16 +262,17 @@ __align(4) uint8_t gu8ConfigDescriptor_10[] = {
                              Audio Control Output Terminal Descriptor  (0x09)
                            Speaker - Interface alternate 0
                              Standard AS interface                     (0x09)
-                           Speaker - Interface alternate 1~4
-                             Standard AS interface                                         (0x09,0x09,0x09,0x09)													 
-                             Audio Streaming Class Specific Interface Descriptor           (0x07,0x07,0x07,0x07)	
-                             Audio Streaming Format Type Descriptor                        (0x0E,0x0E,0x0B,0x0B) 
-                             Endpoint Descriptor                                           (0x09,0x09,0x09,0x09)	
-                             Audio Streaming Class Specific Audio Data Endpoint Descriptor (0x07,0x07,0x07,0x07)	
-                             *Each Interface alternate Summary                             (0x2E,0x2E,0x2B,0x2B) 														 
+                           Speaker - Interface alternate 1
+                             Standard AS interface                                         (0x09)													 
+                             Audio Streaming Class Specific Interface Descriptor           (0x07)	
+                             Audio Streaming Format Type Descriptor                        (0x0B) 
+                             Endpoint Descriptor                                           (0x09)	
+                             Audio Streaming Class Specific Audio Data Endpoint Descriptor (0x07)	
+                             *Each Interface alternate Summary                             (0x2B) 
+							feedback EPA             0x09
 													 										 
                            0x09 + 0x09 + 0x09 + (0x0C + 0x0A + 0x09) +
-                           0x09 + 0x2E + 0x2E + 0x2B + 0x2B = 0xF5
+                           0x09 + 0x2b + 0x09 = 0x77
                         */			
     0x02,               /* bNumInterfaces - Interface 0, Interface 1 (Speaker) */
 #endif
@@ -418,7 +419,7 @@ __align(4) uint8_t gu8ConfigDescriptor_10[] = {
     0x04,               /* bDescriptorType */
     0x01,               /* bInterfaceNumber */
     0x01,               /* bAlternateSetting */
-    0x01,               /* bNumEndpoints */
+    0x02,               /* bNumEndpoints */
     0x01,               /* bInterfaceClass:AUDIO */
     0x02,               /* bInterfaceSubClass:AUDIOSTREAMING */
     0x00,               /* bInterfaceProtocol */
@@ -433,209 +434,34 @@ __align(4) uint8_t gu8ConfigDescriptor_10[] = {
     0x01,0x00,          /* wFormatTag:0x0001 PCM */
 
     /* Audio Streaming Format Type Descriptor */
-    0x0E,               /* bLength */
+    0x0B,               /* bLength */
     0x24,               /* bDescriptorType:CS_INTERFACE */
     0x02,               /* bDescriptorSubType:FORMAT_TYPE */
     0x01,               /* bFormatType:FORMAT_TYPE_I */
                         /* Standard AS interface 1, alternate 1 */ 				
     0x02,               /* bNrChannels    :  2 Channels */
-    0x02,               /* bSubFrameSize  :  2 bytes per sample */
-    0x10,               /* bBitResolution : 16 bits  per sample */			
-    0x02,               /* bSamFreqType : 
+    0x04,               /* bSubFrameSize  :  4 bytes per sample */
+    32,               /* bBitResolution : 32 bits  per sample */			
+    0x01,               /* bSamFreqType : 
                            0 Continuous sampling frequency
                            1 The number of discrete sampling frequencies */		
     /* bSamFreqType  */
-    PLAY_RATE_441K_LO,		
-    PLAY_RATE_441K_MD,		
-    PLAY_RATE_441K_HI,	
-		
-    PLAY_RATE_48K_LO,
-    PLAY_RATE_48K_MD,
-    PLAY_RATE_48K_HI,
+    (44100 & 0xFF),		
+    ((44100 >> 8) & 0xFF),		
+    ((44100 >> 16) & 0xFF),	
+	
     
     /* Endpoint Descriptor (ISO OUT Audio Data Endpoint - alternate 1) */
     0x09,                             /* bLength */
     0x05,                             /* bDescriptorType */
     ISO_OUT_EP_NUM | EP_OUTPUT,       /* bEndpointAddress */
-    0x09,                             /* bmAttributes */
-    /* wMaxPacketSize note */
-    192 & 0x00FF,
-    (192 & 0xFF00) >> 8,
-    0x01,                             /* bInterval */
-    0x00,                             /* bRefresh */
-    0x00,                             /* bSynchAddress */
-
-    /* Audio Streaming Class Specific Audio Data Endpoint Descriptor */
-    0x07,               /* bLength */
-    0x25,               /* bDescriptorType:CS_ENDPOINT */
-    0x01,               /* bDescriptorSubType:EP_GENERAL */
-    0x01,               /* bmAttributes, Bit 7: MaxPacketsOnly, Bit 0: Sampling Frequency */
-    0x01,               /* bLockDelayUnits */
-    0x01, 0x00,         /* wLockDelay */
-		
-    /* Interface Descriptor - Interface 1, alternate 2 */		
-    0x09,               /* bLength */
-    0x04,               /* bDescriptorType */
-    0x01,               /* bInterfaceNumber */
-    0x02,               /* bAlternateSetting */
-    0x01,               /* bNumEndpoints */
-    0x01,               /* bInterfaceClass:AUDIO */
-    0x02,               /* bInterfaceSubClass:AUDIOSTREAMING */
-    0x00,               /* bInterfaceProtocol */
-    0x00,               /* iInterface */
-
-    /* Audio Streaming Class Specific Interface Descriptor (this interface's endpoint connect to Terminal ID 0x01 - Speaker) */
-    0x07,               /* bLength */
-    0x24,               /* bDescriptorType:CS_INTERFACE */
-    0x01,               /* bDescriptorSubType:AS_GENERAL */
-    0x01,               /* bTernimalLink (Speaker) */
-    0x01,               /* bDelay */
-    0x01,0x00,          /* wFormatTag:0x0001 PCM */
-
-    /* Audio Streaming Format Type Descriptor */
-    0x0E,               /* bLength */
-    0x24,               /* bDescriptorType:CS_INTERFACE */
-    0x02,               /* bDescriptorSubType:FORMAT_TYPE */
-    0x01,               /* bFormatType:FORMAT_TYPE_I */
-                        /* Standard AS interface 1, alternate 2 */ 		    		
-    0x02,               /* bNrChannels    :  2 Channels */
-    0x03,               /* bSubFrameSize  :  3 bytes per sample */
-    0x18,               /* bBitResolution : 24 bits  per sample */			
-    0x02,               /* bSamFreqType : 
-                           0 Continuous sampling frequency
-                           1 The number of discrete sampling frequencies */		
-    /* bSamFreqType  */
-    PLAY_RATE_441K_LO,		
-    PLAY_RATE_441K_MD,		
-    PLAY_RATE_441K_HI,		
-		
-    PLAY_RATE_48K_LO,
-    PLAY_RATE_48K_MD,
-    PLAY_RATE_48K_HI,
-		
-    /* Endpoint Descriptor (ISO OUT Audio Data Endpoint - alternate 2) */
-    0x09,                             /* bLength */
-    0x05,                             /* bDescriptorType */
-    ISO_OUT_EP_NUM | EP_OUTPUT,       /* bEndpointAddress */
-    0x09,                             /* bmAttributes */
-    /* wMaxPacketSize note */
-    288 & 0x00FF,
-    (288 & 0xFF00) >> 8,
-    0x01,                             /* bInterval */
-    0x00,                             /* bRefresh */
-    0x00,                             /* bSynchAddress */
-
-    /* Audio Streaming Class Specific Audio Data Endpoint Descriptor */
-    0x07,               /* bLength */
-    0x25,               /* bDescriptorType:CS_ENDPOINT */
-    0x01,               /* bDescriptorSubType:EP_GENERAL */
-    0x01,               /* bmAttributes, Bit 7: MaxPacketsOnly, Bit 0: Sampling Frequency */
-    0x01,               /* bLockDelayUnits */
-    0x01, 0x00,         /* wLockDelay */
-		
-    /* Interface Descriptor - Interface 1, alternate 3 */		
-    0x09,               /* bLength */
-    0x04,               /* bDescriptorType */
-    0x01,               /* bInterfaceNumber */
-    0x03,               /* bAlternateSetting */
-    0x01,               /* bNumEndpoints */
-    0x01,               /* bInterfaceClass:AUDIO */
-    0x02,               /* bInterfaceSubClass:AUDIOSTREAMING */
-    0x00,               /* bInterfaceProtocol */
-    0x00,               /* iInterface */
-
-    /* Audio Streaming Class Specific Interface Descriptor (this interface's endpoint connect to Terminal ID 0x01 - Speaker) */
-    0x07,               /* bLength */
-    0x24,               /* bDescriptorType:CS_INTERFACE */
-    0x01,               /* bDescriptorSubType:AS_GENERAL */
-    0x01,               /* bTernimalLink (Speaker)*/
-    0x01,               /* bDelay */
-    0x01,0x00,          /* wFormatTag:0x0001 PCM */
-
-    /* Audio Streaming Format Type Descriptor */
-    0x0B,               /* bLength */
-    0x24,               /* bDescriptorType:CS_INTERFACE */
-    0x02,               /* bDescriptorSubType:FORMAT_TYPE */
-    0x01,               /* bFormatType:FORMAT_TYPE_I */
-                        /* Standard AS interface 1, alternate 3 */ 	
-    0x02,               /* bNrChannels    :  2 Channels */
-    0x02,               /* bSubFrameSize  :  2 bytes per sample */
-    0x10,               /* bBitResolution : 16 bits  per sample */					
-    0x01,               /* bSamFreqType : 
-                           0 Continuous sampling frequency
-                           1 The number of discrete sampling frequencies */		
-    /* bSamFreqType  */    
-    PLAY_RATE_96K_LO,
-    PLAY_RATE_96K_MD,
-    PLAY_RATE_96K_HI,
-		
-    /* Endpoint Descriptor (ISO OUT Audio Data Endpoint - alternate 3) */
-    0x09,                             /* bLength */
-    0x05,                             /* bDescriptorType */
-    ISO_OUT_EP_NUM | EP_OUTPUT,       /* bEndpointAddress */
-    0x09,                             /* bmAttributes */
+    0x05,//async iso                             /* bmAttributes */
     /* wMaxPacketSize note */
     384 & 0x00FF,
     (384 & 0xFF00) >> 8,
     0x01,                             /* bInterval */
     0x00,                             /* bRefresh */
-    0x00,                             /* bSynchAddress */		
-		
-    /* Audio Streaming Class Specific Audio Data Endpoint Descriptor */
-    0x07,               /* bLength */
-    0x25,               /* bDescriptorType:CS_ENDPOINT */
-    0x01,               /* bDescriptorSubType:EP_GENERAL */
-    0x01,               /* bmAttributes, Bit 7: MaxPacketsOnly, Bit 0: Sampling Frequency */
-    0x01,               /* bLockDelayUnits */
-    0x01, 0x00,         /* wLockDelay */		
-		
-    /* Interface Descriptor - Interface 1, alternate 4 */		
-    0x09,               /* bLength */
-    0x04,               /* bDescriptorType */
-    0x01,               /* bInterfaceNumber */	
-    0x04,               /* bAlternateSetting */
-    0x01,               /* bNumEndpoints */
-    0x01,               /* bInterfaceClass:AUDIO */
-    0x02,               /* bInterfaceSubClass:AUDIOSTREAMING */
-    0x00,               /* bInterfaceProtocol */
-    0x00,               /* iInterface */
-
-    /* Audio Streaming Class Specific Interface Descriptor (this interface's endpoint connect to Terminal ID 0x01 - Speaker) */
-    0x07,               /* bLength */
-    0x24,               /* bDescriptorType:CS_INTERFACE */
-    0x01,               /* bDescriptorSubType:AS_GENERAL */
-    0x01,               /* bTernimalLink (Speaker) */
-    0x01,               /* bDelay */
-    0x01,0x00,          /* wFormatTag:0x0001 PCM */
-
-    /* Audio Streaming Format Type Descriptor */
-    0x0B,               /* bLength */
-    0x24,               /* bDescriptorType:CS_INTERFACE */
-    0x02,               /* bDescriptorSubType:FORMAT_TYPE */
-    0x01,               /* bFormatType:FORMAT_TYPE_I */
-                        /* Standard AS interface 1, alternate 4 */ 			
-    0x02,               /* bNrChannels    :  2 Channels */
-    0x03,               /* bSubFrameSize  :  3 bytes per sample */
-    0x18,               /* bBitResolution : 24 bits  per sample */	
-    0x01,               /* bSamFreqType : 
-                           0 Continuous sampling frequency
-                           1 The number of discrete sampling frequencies */		
-    /* bSamFreqType  */    
-    PLAY_RATE_96K_LO,
-    PLAY_RATE_96K_MD,
-    PLAY_RATE_96K_HI,
-		
-    /* Endpoint Descriptor (ISO OUT Audio Data Endpoint - alternate 4) */
-    0x09,                             /* bLength */
-    0x05,                             /* bDescriptorType */
-    ISO_OUT_EP_NUM | EP_OUTPUT,       /* bEndpointAddress */
-    0x09,                             /* bmAttributes */
-    /* wMaxPacketSize note */
-    576 & 0x00FF,
-    (576 & 0xFF00) >> 8,
-    0x01,                             /* bInterval */
-    0x00,                             /* bRefresh */
-    0x00,                             /* bSynchAddress */
+    0x81,                             /* bSynchAddress */
 
     /* Audio Streaming Class Specific Audio Data Endpoint Descriptor */
     0x07,               /* bLength */
@@ -644,6 +470,17 @@ __align(4) uint8_t gu8ConfigDescriptor_10[] = {
     0x01,               /* bmAttributes, Bit 7: MaxPacketsOnly, Bit 0: Sampling Frequency */
     0x01,               /* bLockDelayUnits */
     0x01, 0x00,         /* wLockDelay */
+		
+    /* Endpoint 2 - Standard Descriptor 反馈端点 */
+    0x09,    /* bLength */
+    0x05,         /* bDescriptorType */
+    0x81,                                 /* bEndpointAddress  EPA-IN*/           
+    0x01,// 连续						  /* bmAttributes */
+	0x03,0x00,                      /* wMaxPacketSize 3 */   
+    0x01,                                 /* bInterval */
+    0x02,      //1-9，1=2ms，9=512ms      /* bRefresh */
+    0x00,      //must=0                   /* bSynchAddress */
+    /* 09 byte*/
 
 #ifdef __HID__
     /* Interface Descriptor for HID */

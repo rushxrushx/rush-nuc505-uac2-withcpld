@@ -12,95 +12,60 @@
 #include "usbd_audio_10.h"
 #include "usbd_audio_play.h"
 
-u32 overrun_counter=0;
-u16 rx_bytes_count;
-u16 rx_frames_count;
-
-/* EP B : Play */
-void EPB_Handler(void)
+u8 fb_buf[3];
+void fb10(u32 freq)
 {
-    uint32_t volatile u32timeout = 0x100000;
-u16 i;
-u16 nextbuf;
-u16 data_remain;
+u32 fbvalue, nInt,nFrac;
+
+	// example freq:44100
+	// 10.10fb=  44 << 14 + 100 << 4
 	
+	nInt=freq/1000;
+	nFrac=(freq - nInt*1000);
+		
+	fbvalue=(nInt <<14) | (nFrac<<4);	
+	
+	fb_buf[0]=fbvalue & 0xff;
+	fb_buf[1]=(fbvalue>>8) & 0xff;
+	fb_buf[2]=(fbvalue>>16) & 0xff;
+
+//{fb_buf[0]=0x66;fb_buf[1]=0x06;fb_buf[2]=0x0b;}
+}
+
+void EPA_Handler10(void)
+{
+if(alt_setting==0) return;//播放状态下才需要发送反馈，停止状态不应该发送
+
+switch (PlaySampleRate)
+	{
+case 44100:
+
+	if (play_speed==0)		fb10(44100);
+	else if (play_speed>0)	fb10(45100);
+	else					fb10(43100);
+	break;
+	
+default:
+	return;
+	}
 	
     while(1) {
         if (!(USBD->DMACTL & USBD_DMACTL_DMAEN_Msk))
             break;
         
-        if((USBD->CEPINTSTS & USBD->CEPINTEN) & USBD_CEPINTSTS_SETUPPKIF_Msk)
-            return;
         if (!USBD_IS_ATTACHED())
             break;
-        if(u32timeout == 0)				
-        {
-            printf("EPA\t%x\n", USBD->EP[EPA].EPDATCNT);
-            printf("EPB\t%x\n", USBD->EP[EPB].EPDATCNT);
-            printf("EPC\t%x\n", USBD->EP[EPC].EPDATCNT);
-            printf("DMACTL\t%X\n", USBD->DMACTL);	
-            printf("DMACNT\t%X\n", USBD->DMACNT);	
-            u32timeout = 0x100000;
-        }					
-        else
-            u32timeout--;
     }
+    USBD_SET_DMA_READ(ISO_IN_EP_NUM);
+    USBD_SET_DMA_ADDR((uint32_t)&fb_buf);
+    USBD_SET_DMA_LEN(3);
+    g_usbd_ShortPacket = 1;
+    USBD_ENABLE_DMA();
     
-    rx_bytes_count = USBD->EP[EPB].EPDATCNT & 0xffff;//实际收到了windows给的多少bytes
+    USBD->EP[EPA].EPRSPCTL = USB_EP_RSPCTL_SHORTTXEN;	
 
-
-	if(rx_bytes_count % 8 != 0)	/// 左右声道数据量不配套？！ 
-		{
-         //砸了电脑！
-		}
-
-    rx_frames_count	=	rx_bytes_count / 8; //64位一帧，32位每声道 X 2声道-> 8 bytes
-
-
-for (i=0; i<rx_frames_count; i++ )
-{
-
-		if (Write_ptr < i2s_BUFSIZE ) nextbuf=Write_ptr+1 ;
-		else nextbuf=0;
-	   
-		if (nextbuf != Play_ptr ) //如果没有追尾，把这一帧数据写入到环形缓存
-		{
-			Write_ptr = nextbuf;
-			i2s_bufL[Write_ptr] = USBD->EP[EPB].EPDAT;
-			i2s_bufR[Write_ptr] = USBD->EP[EPB].EPDAT;
-
-		}
-		else //撞上了
-		{
-			USBD->EP[EPB].EPRSPCTL |= USBD_EPRSPCTL_FLUSH_Msk;//清楚剩余的数据
-			overrun_counter++;//立OVER-RUN FLAG
-
-			break;//吃吐了，剩下数据全部不要了
-			
-		}
 }
-      
-	//计算环形数据容量
-	if (Write_ptr > Play_ptr) data_remain = Write_ptr - Play_ptr;
 
-	else data_remain = i2s_BUFSIZE - Play_ptr + Write_ptr;
-	
-//反馈条件
-	
-	if (data_remain > i2s_BUFSIZE/3*2 ) play_speed=-1;
-
-	else if (data_remain > i2s_BUFSIZE/3*1 ) play_speed=0;
-
-	else play_speed=1;
-	
-	
-
-//如果目前是停止状态，有一半容量开启播放
-	if ( (audiostatus==0) && (data_remain > i2s_BUFSIZE/2 ) ) EVAL_AUDIO_Play();
-
-	
-	
-}
 
 #if defined __HID20__ || defined __HID__
 extern int32_t g_hid_type;

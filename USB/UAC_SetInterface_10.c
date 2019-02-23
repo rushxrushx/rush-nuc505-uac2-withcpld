@@ -18,28 +18,18 @@ void UAC_SetInterface_10(uint32_t u32AltInterface)
     
     if ((gUsbCmd.wIndex & 0xff) == 1)        /* Interface 1 */  
     {
-        /* Audio Iso OUT interface */ 
-        if (u32AltInterface == 2 || u32AltInterface == 4)       /* Interface 1, Alternate 2/4 */ 
+        if (u32AltInterface == 1 )  /* Interface 1, Alternate 1 */ 
         {
-            //psAudioLib->m_u8PlayBitRate  = 24;
-            //psAudioLib->m_u8PlayChannels =  2;
-            //psAudioLib->m_pfnPlayConfigMaxPayload10( psAudioLib );
-            //USBD_SET_MAX_PAYLOAD(EPB, psAudioLib->m_u16PlayMaxPayload2_);
-            printf("dP++s\n");
-        }
-        else if (u32AltInterface == 1 || u32AltInterface == 3)  /* Interface 1, Alternate 1/3 */ 
-        {
-            //psAudioLib->m_u8PlayBitRate  = 16;
-            //psAudioLib->m_u8PlayChannels =  2;
-            //psAudioLib->m_pfnPlayConfigMaxPayload10( psAudioLib );
-            //USBD_SET_MAX_PAYLOAD(EPB, psAudioLib->m_u16PlayMaxPayload2_);
-            printf("dP+s\n");
+			PlaySampleRate=44100;
+			EVAL_AUDIO_Samplerate();
+			alt_setting=1;
+			PC3_DOUT = 0;//led on
         }
         else                                                    /* Close Interface 1 */ 
         {
-            //psAudioLib->m_pfnPlayStop( psAudioLib );
-            USBD->EP[EPB].EPRSPCTL |= USBD_EPRSPCTL_FLUSH_Msk;
-            printf("dp-\n");
+            //USBD->EP[EPB].EPRSPCTL |= USBD_EPRSPCTL_FLUSH_Msk;
+			PC3_DOUT = 1;//led off
+			alt_setting=0;
         }
     }
 }

@@ -99,7 +99,7 @@ void USBLib_Init(void)
         printf("Try - UAC1.0\n");
         USBD_Open(&gsInfo_10, UAC_ClassRequest_10, UAC_SetInterface_10);
         /* Endpoint configuration */
-        UAC_Init_10( psAudioLib );
+        UAC_Init_10();
         #ifdef __HID__
             #ifdef __MEDIAKEY__
             g_hid_type = HID_TYPE_MEDIAKEY;
@@ -122,7 +122,7 @@ void USBLib_Init(void)
     #else
     USBD_Open(&gsInfo_10, UAC_ClassRequest_10, UAC_SetInterface_10);
     /* Endpoint configuration */
-    UAC_Init_10(psAudioLib);
+    UAC_Init_10();
         #ifdef __HID__
             #ifdef __MEDIAKEY__
             g_hid_type = HID_TYPE_MEDIAKEY;

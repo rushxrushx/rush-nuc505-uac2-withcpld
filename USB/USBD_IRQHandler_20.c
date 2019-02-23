@@ -183,7 +183,8 @@ void USBD_IRQHandler_20(void)
         IrqSt = USBD->EP[EPA].EPINTSTS & USBD->EP[EPA].EPINTEN;
         USBD_CLR_EP_INT_FLAG(EPA, IrqSt);
 		
-		EPA_Handler();//反馈发送
+		EPB_Handler();//数据接收(播放音频)
+		EPA_Handler20();//反馈发送
     }
 
 
@@ -195,7 +196,7 @@ void USBD_IRQHandler_20(void)
         {					
             USBD_CLR_EP_INT_FLAG(EPB, USBD_EPINTSTS_RXPKIF_Msk);	
 														
-            EPB_Handler();//数据接收(播放音频)
+			
        
         }		
     }
@@ -212,8 +213,7 @@ void USBD_IRQHandler_20(void)
     if (IrqStL & USBD_GINTSTS_EPDIF_Msk) {
         IrqSt = USBD->EP[EPD].EPINTSTS & USBD->EP[EPD].EPINTEN;
         USBD_CLR_EP_INT_FLAG(EPD, IrqSt);
-    }
-////////////////FEEDBACK    
+    }   
     if (IrqStL & USBD_GINTSTS_EPEIF_Msk) {
         IrqSt = USBD->EP[EPE].EPINTSTS & USBD->EP[EPE].EPINTEN;
         USBD_CLR_EP_INT_FLAG(EPE, IrqSt);

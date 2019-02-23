@@ -42,25 +42,6 @@ u32 i2s_workingBUFSIZE=2000;//实际工作中缓存大小
 #define SEL_45 	PA6_DOUT = 0;PA7_DOUT = 1;
 #define SEL_49 	PA6_DOUT = 1;PA7_DOUT = 0;
 
-//开始播放
-void EVAL_AUDIO_Play(void)
-{  
-    I2S_EnableInt(I2S,I2S_FIFO_TXTH_INT_MASK);
-    I2S_ENABLE_TX(I2S);
-	LEDON;
-	audiostatus=1;
-}
- 
- 
-//停止播放
-void EVAL_AUDIO_Stop(void)
-{ 
-    I2S_DisableInt(I2S,I2S_FIFO_TXTH_INT_MASK);
-    I2S_DISABLE_TX(I2S);
-    I2S_CLR_TX_FIFO(I2S);
-	LEDOFF;
-	audiostatus=0;
-}
 
 ///设置是采样率 i2s set samplerate
 static void I2S_Set_Samplerate(uint32_t u32I2sSampleRate)
@@ -126,7 +107,7 @@ static void I2S_Set_Samplerate(uint32_t u32I2sSampleRate)
 
 }
 
-void I2S_slaveOpen1(uint32_t u32WordWidth, uint32_t u32Channels, uint32_t u32DataFormat)
+void I2S_slaveOpen(uint32_t u32WordWidth, uint32_t u32Channels, uint32_t u32DataFormat)
 {
 	SYS->IPRST1 |= SYS_IPRST1_I2SRST_Msk;
 	SYS->IPRST1 &= ~SYS_IPRST1_I2SRST_Msk;
@@ -136,16 +117,9 @@ void I2S_slaveOpen1(uint32_t u32WordWidth, uint32_t u32Channels, uint32_t u32Dat
 	I2S->CTL &= ~I2S_CTL_CODECRST_Msk;//内部DAC关闭
 
     I2S->CTL |= I2S_CTL_I2SEN_Msk;
-
-}
-void EVAL_AUDIO_Samplerate( void)
-{
-EVAL_AUDIO_Stop();
-
-	I2S_Set_Samplerate(PlaySampleRate);
 }
 
-void I2S2_Init(void)
+void I2S_Init(void)
 {
     
     /* Init I2S, IP clock and multi-function I/O */
@@ -171,18 +145,44 @@ void I2S2_Init(void)
 	GPIO_SetMode(PA, BIT1, GPIO_MODE_OUTPUT);
 	GPIO_SetMode(PA, BIT2, GPIO_MODE_OUTPUT);
 
-
 	I2S_Set_Samplerate(PlaySampleRate);		//设置采样率(初始化外部晶振状态，开机默认是两个同时通电输出短路)
-    I2S_slaveOpen1(I2S_DATABIT_32, I2S_STEREO, I2S_FORMAT_I2S);
+    I2S_slaveOpen(I2S_DATABIT_32, I2S_STEREO, I2S_FORMAT_I2S);
 	
+}
+
+
+//开始播放
+void EVAL_AUDIO_Play(void)
+{  
+    I2S_EnableInt(I2S,I2S_FIFO_TXTH_INT_MASK);
+    I2S_ENABLE_TX(I2S);
+	LEDON;
+	audiostatus=1;
+}
+ 
+ 
+//停止播放
+void EVAL_AUDIO_Stop(void)
+{ 
+    I2S_DisableInt(I2S,I2S_FIFO_TXTH_INT_MASK);
+    I2S_DISABLE_TX(I2S);
+    I2S_CLR_TX_FIFO(I2S);
+	LEDOFF;
+	audiostatus=0;
+}
+
+//更新采样率
+void EVAL_AUDIO_Samplerate(void)
+{
+	EVAL_AUDIO_Stop();
+	I2S_Set_Samplerate(PlaySampleRate);
 }
 
 //上电初始化
 void EVAL_AUDIO_Init(void)
 { 
-	I2S2_Init();
+	I2S_Init();
 	I2S_SetFIFO(I2S,8,8);
-	EVAL_AUDIO_Stop();
 	NVIC_EnableIRQ(I2S_IRQn);
 }
 

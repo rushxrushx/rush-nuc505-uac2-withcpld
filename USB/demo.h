@@ -7,18 +7,22 @@
 
 /********************************************************************************************
  UAC 1.0 Setting 
-********************************************************************************************/
-//#define __HID__							/* Enable HID for UAC 1.0 */	
-
+********************************************************************************************/	
+/* UAC 1.0 VID PID */
+#define USBD_VID                0x20b1
+#define USBD_PID        		0x301f	
+//#define __HID__							/* Enable HID for UAC 1.0 */
 #ifdef __HID__
     #define __MEDIAKEY__				/* Select Mediakey for HID */		
     //#define __KEYBOARD__				/* Select Keyboard for HID */	
 #endif
 /********************************************************************************************
  UAC 2.0 Setting
-********************************************************************************************/
-//#define __HID20__						/* Enable HID for UAC 2.0 */	
-
+********************************************************************************************/	
+/* UAC 2.0 VID PID */
+#define USBD_VID20              0x20b1
+#define USBD_PID20        		0x301f
+//#define __HID20__						/* Enable HID for UAC 2.0 */
 #ifdef __HID20__
     #define __MEDIAKEY20__			/* Select Mediakey for HID */		
     //#define __KEYBOARD20__			/* Select Keyboard for HID */	
@@ -37,7 +41,8 @@ void UAC_SetInterface_20(uint32_t u32AltInterface);
 void UAC_Init_10(void);
 void UAC_Init_20(void);
 void SOF_Handler(void);
-void EPA_Handler(void);
+void EPA_Handler20(void);
+void EPA_Handler10(void);
 void EPB_Handler(void);
 void EPC_Handler(void);
 void EPE_Handler(void);
@@ -61,23 +66,9 @@ void HID_UpdateKbData(void);
 #define HID_TYPE_MEDIAKEY 	0
 #define HID_TYPE_KEYBOARD 	1
 
-
 /*-------------------------------------------------------------*/
 /* Define the interrupt In EP number */
 #define ISO_IN_EP_NUM          0x01
 #define HID_IN_EP_NUM          0x03
 #define ISO_OUT_EP_NUM         0x02
 #define HID_INT_EP_NUM         HID_IN_EP_NUM
-
-
-/* UAC 1.0 VID PID */
-
-#define USBD_VID                0x0420
-#define USBD_PID        		0x1429	
-
-/* UAC 2.0 VID PID */
-
-#define USBD_VID20              0x20b1
-#define USBD_PID20        		0x301f
-
-

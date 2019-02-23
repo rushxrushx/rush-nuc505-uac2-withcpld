@@ -11,27 +11,7 @@
 
 #include "demo.h"
 
-/* Define Descriptor information */
-/*!<Define Audio information */
-/* note we can modify supported sampling rate */
-/* if need to add more sampling rate or sample size, please contact nuvoton */
-#define AUDIO_RATE_441K  44100
-#define AUDIO_RATE_48K   48000
-#define AUDIO_RATE_96K    96000
-
 #define PLAY_FEATURE_UNITID     0x06
-
-#define PLAY_RATE_441K_LO    (AUDIO_RATE_441K & 0xFF)
-#define PLAY_RATE_441K_MD    ((AUDIO_RATE_441K >> 8) & 0xFF)
-#define PLAY_RATE_441K_HI    ((AUDIO_RATE_441K >> 16) & 0xFF)
-
-#define PLAY_RATE_48K_LO    (AUDIO_RATE_48K & 0xFF)
-#define PLAY_RATE_48K_MD    ((AUDIO_RATE_48K >> 8) & 0xFF)
-#define PLAY_RATE_48K_HI    ((AUDIO_RATE_48K >> 16) & 0xFF)
-
-#define PLAY_RATE_96K_LO    (AUDIO_RATE_96K & 0xFF)
-#define PLAY_RATE_96K_MD    ((AUDIO_RATE_96K >> 8) & 0xFF)
-#define PLAY_RATE_96K_HI    ((AUDIO_RATE_96K >> 16) & 0xFF)
 
 /***************************************************/
 /*      Audio Class-Specific Request Codes         */
