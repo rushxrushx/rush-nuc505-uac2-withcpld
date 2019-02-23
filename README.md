@@ -7,6 +7,15 @@
 
 2,增加usb1.0模式(32bit 44khz,windows needs xmos driver)
 
+![](https://github.com/rushxrushx/rush-nuc505-uac2-withcpld/blob/master/images/bufissue.png?raw=true)
+
+![](https://github.com/rushxrushx/rush-nuc505-uac2-withcpld/blob/master/images/bufissue1.png?raw=true)
+
+![](https://github.com/rushxrushx/rush-nuc505-uac2-withcpld/blob/master/images/bufissue2.png?raw=true)
+
+![](https://github.com/rushxrushx/rush-nuc505-uac2-withcpld/blob/master/images/bufissue3.png?raw=true)
+
+
 我是硬生生按照这张图片做
 
 破音就是缓存bug了
