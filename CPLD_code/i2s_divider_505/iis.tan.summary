@@ -1,0 +1,76 @@
+--------------------------------------------------------------------------------------
+Slow Model Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 29.982 ns
+From           : bclk
+To             : bckout2
+From Clock     : clkin49
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case tpd
+Slack          : N/A
+Required Time  : None
+Actual Time    : 17.386 ns
+From           : rstin
+To             : bckout2
+From Clock     : --
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Slow Model Clock Setup: 'clkin49'
+Slack          : 0.436 ns
+Required Time  : 50.00 MHz ( period = 20.000 ns )
+Actual Time    : 51.11 MHz ( period = 19.564 ns )
+From           : cntl[0]
+To             : cntl[4]
+From Clock     : clkin49
+To Clock       : clkin49
+Failed Paths   : 0
+
+Type           : Slow Model Clock Setup: 'clkin45'
+Slack          : 2.658 ns
+Required Time  : 45.00 MHz ( period = 22.222 ns )
+Actual Time    : 51.11 MHz ( period = 19.564 ns )
+From           : cntl[0]
+To             : cntl[4]
+From Clock     : clkin45
+To Clock       : clkin45
+Failed Paths   : 0
+
+Type           : Slow Model Clock Hold: 'clkin45'
+Slack          : 1.995 ns
+Required Time  : 45.00 MHz ( period = 22.222 ns )
+Actual Time    : N/A
+From           : cntl[1]
+To             : cntl[1]
+From Clock     : clkin45
+To Clock       : clkin45
+Failed Paths   : 0
+
+Type           : Slow Model Clock Hold: 'clkin49'
+Slack          : 1.995 ns
+Required Time  : 50.00 MHz ( period = 20.000 ns )
+Actual Time    : N/A
+From           : cntl[1]
+To             : cntl[1]
+From Clock     : clkin49
+To Clock       : clkin49
+Failed Paths   : 0
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 0
+
+--------------------------------------------------------------------------------------
+

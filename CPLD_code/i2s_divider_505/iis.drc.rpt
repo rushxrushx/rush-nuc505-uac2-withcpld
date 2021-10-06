@@ -1,0 +1,260 @@
+Design Assistant report for iis
+Thu Dec 13 08:11:08 2018
+Quartus II Version 8.1 Build 163 10/28/2008 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Design Assistant Summary
+  3. Design Assistant Settings
+  4. Critical Violations
+  5. High Violations
+  6. Medium Violations
+  7. Information only Violations
+  8. Design Assistant Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2008 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------+
+; Design Assistant Summary                                                ;
++-----------------------------------+-------------------------------------+
+; Design Assistant Status           ; Analyzed - Thu Dec 13 08:11:08 2018 ;
+; Revision Name                     ; iis                                 ;
+; Top-level Entity Name             ; iis                                 ;
+; Family                            ; MAX3000A                            ;
+; Total Critical Violations         ; 6                                   ;
+; - Rule C101                       ; 6                                   ;
+; Total High Violations             ; 6                                   ;
+; - Rule S104                       ; 6                                   ;
+; Total Medium Violations           ; 7                                   ;
+; - Rule C103                       ; 6                                   ;
+; - Rule R102                       ; 1                                   ;
+; Total Information only Violations ; 18                                  ;
+; - Rule T102                       ; 18                                  ;
++-----------------------------------+-------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Design Assistant Settings                                                                                                                                                                                                                                                                                    ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+----+
+; Option                                                                                                                                                                                                                                                                                   ; Setting      ; To ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+----+
+; Design Assistant mode                                                                                                                                                                                                                                                                    ; Post-Fitting ;    ;
+; Threshold value for clock net not mapped to clock spines rule                                                                                                                                                                                                                            ; 25           ;    ;
+; Minimum number of clock port feed by gated clocks                                                                                                                                                                                                                                        ; 30           ;    ;
+; Minimum number of node fan-out                                                                                                                                                                                                                                                           ; 30           ;    ;
+; Maximum number of nodes to report                                                                                                                                                                                                                                                        ; 50           ;    ;
+; Rule C101: Gated clock should be implemented according to the Altera standard scheme                                                                                                                                                                                                     ; On           ;    ;
+; Rule C102: Logic cell should not be used to generate inverted clock                                                                                                                                                                                                                      ; On           ;    ;
+; Rule C103: Gated clock is not feeding at least a pre-defined number of clock port to effectively save power                                                                                                                                                                              ; On           ;    ;
+; Rule C104: Clock signal source should drive only input clock ports                                                                                                                                                                                                                       ; On           ;    ;
+; Rule C105: Clock signal should be a global signal (Rule applies during post-fitting analysis. This rule applies during both post-fitting analysis and post-synthesis analysis if the design targets a MAX 3000 or MAX 7000 device. For more information, see the Help for the rule.)     ; On           ;    ;
+; Rule C106: Clock signal source should not drive registers that are triggered by different clock edges                                                                                                                                                                                    ; On           ;    ;
+; Rule R101: Combinational logic used as a reset signal should be synchronized                                                                                                                                                                                                             ; On           ;    ;
+; Rule R102: External reset should be synchronized using two cascaded registers                                                                                                                                                                                                            ; On           ;    ;
+; Rule R103: External reset should be correctly synchronized                                                                                                                                                                                                                               ; On           ;    ;
+; Rule R104: The reset signal that is generated in one clock domain and is used in the other clock domain, should be correctly synchronized                                                                                                                                                ; On           ;    ;
+; Rule R105: The reset signal that is generated in one clock domain and is used in the other clock domain, should be synchronized                                                                                                                                                          ; On           ;    ;
+; Rule T101: Nodes with more than the specified number of fan-outs                                                                                                                                                                                                                         ; On           ;    ;
+; Rule T102: Top nodes with the highest number of fan-outs                                                                                                                                                                                                                                 ; On           ;    ;
+; Rule A101: Design should not contain combinational loops                                                                                                                                                                                                                                 ; On           ;    ;
+; Rule A102: Register output should not drive its own control signal directly or through combinational logic                                                                                                                                                                               ; On           ;    ;
+; Rule A103: Design should not contain delay chains                                                                                                                                                                                                                                        ; On           ;    ;
+; Rule A104: Design should not contain ripple clock structures                                                                                                                                                                                                                             ; On           ;    ;
+; Rule A105: Pulses should not be implemented asynchronously                                                                                                                                                                                                                               ; On           ;    ;
+; Rule A106: Multiple pulses should not be generated in design                                                                                                                                                                                                                             ; On           ;    ;
+; Rule A107: Design should not contain SR latches                                                                                                                                                                                                                                          ; On           ;    ;
+; Rule A108: Design should not contain latches                                                                                                                                                                                                                                             ; On           ;    ;
+; Rule A109: Combinational logic should not directly drive write enable signal of asynchronous RAM                                                                                                                                                                                         ; On           ;    ;
+; Rule A110: Design should not contain asynchronous memory                                                                                                                                                                                                                                 ; On           ;    ;
+; Rule S101: Output enable and input of the same tri-state node should not be driven by same signal source                                                                                                                                                                                 ; On           ;    ;
+; Rule S102: Synchronous port and asynchronous port of the same register should not be driven by the same signal source                                                                                                                                                                    ; On           ;    ;
+; Rule S103: More than one asynchronous signal port of the same register should not be driven by the same signal source                                                                                                                                                                    ; On           ;    ;
+; Rule S104: Clock port and any other signal port of same register should not be driven by the same signal source                                                                                                                                                                          ; On           ;    ;
+; Rule D101: Data bits are not synchronized when transferred between asynchronous clock domains                                                                                                                                                                                            ; On           ;    ;
+; Rule D102: Multiple data bits that are transferred across asynchronous clock domains are synchronized, but not all bits may be aligned in the receiving clock domain                                                                                                                     ; On           ;    ;
+; Rule D103: Data bits are not correctly synchronized when transferred between asynchronous clock domains                                                                                                                                                                                  ; On           ;    ;
+; Rule H101: Only one VREF pin should be assigned to the HardCopy test pin in an I/O bank (Rule does not apply to all HardCopy and HardCopy Stratix devices. This rule is used to analyze a design only when the rule applies to the design's target HardCopy or HardCopy Stratix device.) ; On           ;    ;
+; Rule H102: PLL clock output drives multiple clock network types (Rule does not apply to all HardCopy and HardCopy Stratix devices. This rule is used to analyze a design only when the rule applies to the design's target HardCopy or HardCopy Stratix device.)                         ; On           ;    ;
+; Rule M101: Data bits are not synchronized when transferred to the state machine of asynchronous clock domains                                                                                                                                                                            ; Off          ;    ;
+; Rule M102: No reset signal defined to initialize the state machine                                                                                                                                                                                                                       ; Off          ;    ;
+; Rule M103: State machine should not contain an unreachable state                                                                                                                                                                                                                         ; Off          ;    ;
+; Rule M104: State machine should not contain a deadlock state                                                                                                                                                                                                                             ; Off          ;    ;
+; Rule M105: State machine should not contain a dead transition                                                                                                                                                                                                                            ; Off          ;    ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+----+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Critical Violations                                                                                                   ;
++--------------------------------------------------------------------------------------+--------------------------------+
+; Rule name                                                                            ; Name                           ;
++--------------------------------------------------------------------------------------+--------------------------------+
+; Rule C101: Gated clock should be implemented according to the Altera standard scheme ; lpm_counter:cntl_rtl_0|dffs[0] ;
+;  Gated clock destination node(s) list                                                ; lpm_counter:cntl_rtl_0|dffs[0] ;
+; Rule C101: Gated clock should be implemented according to the Altera standard scheme ; lpm_counter:cntl_rtl_0|dffs[1] ;
+;  Gated clock destination node(s) list                                                ; lpm_counter:cntl_rtl_0|dffs[1] ;
+; Rule C101: Gated clock should be implemented according to the Altera standard scheme ; lpm_counter:cntl_rtl_0|dffs[2] ;
+;  Gated clock destination node(s) list                                                ; lpm_counter:cntl_rtl_0|dffs[2] ;
+; Rule C101: Gated clock should be implemented according to the Altera standard scheme ; lpm_counter:cntl_rtl_0|dffs[3] ;
+;  Gated clock destination node(s) list                                                ; lpm_counter:cntl_rtl_0|dffs[3] ;
+; Rule C101: Gated clock should be implemented according to the Altera standard scheme ; lpm_counter:cntl_rtl_0|dffs[4] ;
+;  Gated clock destination node(s) list                                                ; lpm_counter:cntl_rtl_0|dffs[4] ;
+; Rule C101: Gated clock should be implemented according to the Altera standard scheme ; lpm_counter:cntl_rtl_0|dffs[5] ;
+;  Gated clock destination node(s) list                                                ; lpm_counter:cntl_rtl_0|dffs[5] ;
++--------------------------------------------------------------------------------------+--------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; High Violations                                                                                                                                  ;
++-----------------------------------------------------------------------------------------------------------------+--------------------------------+
+; Rule name                                                                                                       ; Name                           ;
++-----------------------------------------------------------------------------------------------------------------+--------------------------------+
+; Rule S104: Clock port and any other signal port of same register should not be driven by the same signal source ; lpm_counter:cntl_rtl_0|dffs[0] ;
+;  Violated clock and other port source node(s) list                                                              ; rstin                          ;
+; Rule S104: Clock port and any other signal port of same register should not be driven by the same signal source ; lpm_counter:cntl_rtl_0|dffs[1] ;
+;  Violated clock and other port source node(s) list                                                              ; rstin                          ;
+; Rule S104: Clock port and any other signal port of same register should not be driven by the same signal source ; lpm_counter:cntl_rtl_0|dffs[2] ;
+;  Violated clock and other port source node(s) list                                                              ; rstin                          ;
+; Rule S104: Clock port and any other signal port of same register should not be driven by the same signal source ; lpm_counter:cntl_rtl_0|dffs[3] ;
+;  Violated clock and other port source node(s) list                                                              ; rstin                          ;
+; Rule S104: Clock port and any other signal port of same register should not be driven by the same signal source ; lpm_counter:cntl_rtl_0|dffs[4] ;
+;  Violated clock and other port source node(s) list                                                              ; rstin                          ;
+; Rule S104: Clock port and any other signal port of same register should not be driven by the same signal source ; lpm_counter:cntl_rtl_0|dffs[5] ;
+;  Violated clock and other port source node(s) list                                                              ; rstin                          ;
++-----------------------------------------------------------------------------------------------------------------+--------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Medium Violations                                                                                                                            ;
++-------------------------------------------------------------------------------------------------------------+--------------------------------+
+; Rule name                                                                                                   ; Name                           ;
++-------------------------------------------------------------------------------------------------------------+--------------------------------+
+; Rule C103: Gated clock is not feeding at least a pre-defined number of clock port to effectively save power ; lpm_counter:cntl_rtl_0|dffs[0] ;
+;  Gated clock destination node(s) list                                                                       ; lpm_counter:cntl_rtl_0|dffs[0] ;
+; Rule C103: Gated clock is not feeding at least a pre-defined number of clock port to effectively save power ; lpm_counter:cntl_rtl_0|dffs[1] ;
+;  Gated clock destination node(s) list                                                                       ; lpm_counter:cntl_rtl_0|dffs[1] ;
+; Rule C103: Gated clock is not feeding at least a pre-defined number of clock port to effectively save power ; lpm_counter:cntl_rtl_0|dffs[2] ;
+;  Gated clock destination node(s) list                                                                       ; lpm_counter:cntl_rtl_0|dffs[2] ;
+; Rule C103: Gated clock is not feeding at least a pre-defined number of clock port to effectively save power ; lpm_counter:cntl_rtl_0|dffs[3] ;
+;  Gated clock destination node(s) list                                                                       ; lpm_counter:cntl_rtl_0|dffs[3] ;
+; Rule C103: Gated clock is not feeding at least a pre-defined number of clock port to effectively save power ; lpm_counter:cntl_rtl_0|dffs[4] ;
+;  Gated clock destination node(s) list                                                                       ; lpm_counter:cntl_rtl_0|dffs[4] ;
+; Rule C103: Gated clock is not feeding at least a pre-defined number of clock port to effectively save power ; lpm_counter:cntl_rtl_0|dffs[5] ;
+;  Gated clock destination node(s) list                                                                       ; lpm_counter:cntl_rtl_0|dffs[5] ;
+; Rule R102: External reset should be synchronized using two cascaded registers                               ; rstin                          ;
+;  Reset signal destination node(s) list                                                                      ; lpm_counter:cntl_rtl_0|dffs[5] ;
+;  Reset signal destination node(s) list                                                                      ; lpm_counter:cntl_rtl_0|dffs[4] ;
+;  Reset signal destination node(s) list                                                                      ; lpm_counter:cntl_rtl_0|dffs[3] ;
+;  Reset signal destination node(s) list                                                                      ; lpm_counter:cntl_rtl_0|dffs[2] ;
+;  Reset signal destination node(s) list                                                                      ; lpm_counter:cntl_rtl_0|dffs[1] ;
+;  Reset signal destination node(s) list                                                                      ; lpm_counter:cntl_rtl_0|dffs[0] ;
+;  Reset signal destination node(s) list                                                                      ; cnt[1]                         ;
+;  Reset signal destination node(s) list                                                                      ; cnt[0]                         ;
++-------------------------------------------------------------------------------------------------------------+--------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Information only Violations                                                                         ;
++----------------------------------------------------------+--------------------------------+---------+
+; Rule name                                                ; Name                           ; Fan-Out ;
++----------------------------------------------------------+--------------------------------+---------+
+; Rule T102: Top nodes with the highest number of fan-outs ; rstin                          ; 14      ;
+; Rule T102: Top nodes with the highest number of fan-outs ; cnt[1]                         ; 8       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; lpm_counter:cntl_rtl_0|dffs[0] ; 5       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; lpm_counter:cntl_rtl_0|dffs[1] ; 4       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; lpm_counter:cntl_rtl_0|dffs[2] ; 3       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; lpm_counter:cntl_rtl_0|dffs[5] ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; clkin                          ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; lpm_counter:cntl_rtl_0|dffs[3] ; 2       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; passi~2                        ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; rstin~4                        ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; lpm_counter:cntl_rtl_0|dffs[4] ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; rstin~6                        ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; lrckout~24                     ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; passi                          ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; cnt[0]                         ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; lrckout~21                     ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; bckout~32                      ; 1       ;
+; Rule T102: Top nodes with the highest number of fan-outs ; bckout~34                      ; 1       ;
++----------------------------------------------------------+--------------------------------+---------+
+
+
++---------------------------+
+; Design Assistant Messages ;
++---------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Design Assistant
+    Info: Version 8.1 Build 163 10/28/2008 SJ Full Version
+    Info: Processing started: Thu Dec 13 08:11:08 2018
+Info: Command: quartus_drc --read_settings_files=on --write_settings_files=off iis -c iis
+Critical Warning: (Critical) Rule C101: Gated clock should be implemented according to the Altera standard scheme. Found 6 node(s) related to this rule.
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[0]"
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[1]"
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[2]"
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[3]"
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[4]"
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[5]"
+Critical Warning: (High) Rule S104: Clock port and any other signal port of same register should not be driven by the same signal source. Found 6 node(s) related to this rule.
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[0]"
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[1]"
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[2]"
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[3]"
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[4]"
+    Critical Warning: Node  "lpm_counter:cntl_rtl_0|dffs[5]"
+Warning: (Medium) Rule C103: Gated clock is not feeding at least a pre-defined number of clock port to effectively save power. (Value defined:30). Found 6 node(s) related to this rule.
+    Warning: Node  "lpm_counter:cntl_rtl_0|dffs[0]"
+    Warning: Node  "lpm_counter:cntl_rtl_0|dffs[1]"
+    Warning: Node  "lpm_counter:cntl_rtl_0|dffs[2]"
+    Warning: Node  "lpm_counter:cntl_rtl_0|dffs[3]"
+    Warning: Node  "lpm_counter:cntl_rtl_0|dffs[4]"
+    Warning: Node  "lpm_counter:cntl_rtl_0|dffs[5]"
+Warning: (Medium) Rule R102: External reset should be synchronized using two cascaded registers. Found 1 node(s) related to this rule.
+    Warning: Node  "rstin"
+Info: (Information) Rule T102: Top nodes with the highest number of fan-outs. (Value defined:50). Found 18 node(s) with highest fan-out.
+    Info: Node  "rstin"
+    Info: Node  "cnt[1]"
+    Info: Node  "lpm_counter:cntl_rtl_0|dffs[0]"
+    Info: Node  "lpm_counter:cntl_rtl_0|dffs[1]"
+    Info: Node  "lpm_counter:cntl_rtl_0|dffs[2]"
+    Info: Node  "lpm_counter:cntl_rtl_0|dffs[5]"
+    Info: Node  "clkin"
+    Info: Node  "lpm_counter:cntl_rtl_0|dffs[3]"
+    Info: Node  "passi~2"
+    Info: Node  "rstin~4"
+    Info: Node  "lpm_counter:cntl_rtl_0|dffs[4]"
+    Info: Node  "rstin~6"
+    Info: Node  "lrckout~24"
+    Info: Node  "passi"
+    Info: Node  "cnt[0]"
+    Info: Node  "lrckout~21"
+    Info: Node  "bckout~32"
+    Info: Node  "bckout~34"
+Info: Design Assistant information: finished post-fitting analysis of current design -- generated 18 information messages and 19 warning messages
+Info: Quartus II Design Assistant was successful. 0 errors, 23 warnings
+    Info: Peak virtual memory: 174 megabytes
+    Info: Processing ended: Thu Dec 13 08:11:08 2018
+    Info: Elapsed time: 00:00:00
+    Info: Total CPU time (on all processors): 00:00:00
+
+

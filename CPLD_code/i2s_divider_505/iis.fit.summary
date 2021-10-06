@@ -1,0 +1,11 @@
+Fitter Status : Successful - Fri Jun 05 16:49:46 2020
+Quartus II Version : 8.1 Build 163 10/28/2008 SJ Full Version
+Revision Name : iis
+Top-level Entity Name : iis
+Family : MAX II
+Device : EPM240T100C5
+Timing Models : Final
+Total logic elements : 33 / 240 ( 14 % )
+Total pins : 16 / 80 ( 20 % )
+Total virtual pins : 0
+UFM blocks : 0 / 1 ( 0 % )

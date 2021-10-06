@@ -1,0 +1,218 @@
+Simulator report for iis
+Fri Jun 05 16:47:14 2020
+Quartus II Version 8.1 Build 163 10/28/2008 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Simulator Summary
+  3. Simulator Settings
+  4. Simulation Waveforms
+  5. Coverage Summary
+  6. Complete 1/0-Value Coverage
+  7. Missing 1-Value Coverage
+  8. Missing 0-Value Coverage
+  9. Simulator INI Usage
+ 10. Simulator Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2008 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------+
+; Simulator Summary                          ;
++-----------------------------+--------------+
+; Type                        ; Value        ;
++-----------------------------+--------------+
+; Simulation Start Time       ; 0 ps         ;
+; Simulation End Time         ; 1.0 ms       ;
+; Simulation Netlist Size     ; 43 nodes     ;
+; Simulation Coverage         ;      78.57 % ;
+; Total Number of Transitions ; 1305447      ;
+; Simulation Breakpoints      ; 0            ;
+; Family                      ; MAX II       ;
+; Device                      ; EPM240T100C5 ;
++-----------------------------+--------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Simulator Settings                                                                                                      ;
++--------------------------------------------------------------------------------------------+------------+---------------+
+; Option                                                                                     ; Setting    ; Default Value ;
++--------------------------------------------------------------------------------------------+------------+---------------+
+; Simulation mode                                                                            ; Timing     ; Timing        ;
+; Start time                                                                                 ; 0 ns       ; 0 ns          ;
+; End time                                                                                   ; 2 ms       ;               ;
+; Simulation results format                                                                  ; CVWF       ;               ;
+; Vector input source                                                                        ; iis.vwf    ;               ;
+; Add pins automatically to simulation output waveforms                                      ; On         ; On            ;
+; Check outputs                                                                              ; Off        ; Off           ;
+; Report simulation coverage                                                                 ; On         ; On            ;
+; Display complete 1/0 value coverage report                                                 ; On         ; On            ;
+; Display missing 1-value coverage report                                                    ; On         ; On            ;
+; Display missing 0-value coverage report                                                    ; On         ; On            ;
+; Detect setup and hold time violations                                                      ; Off        ; Off           ;
+; Detect glitches                                                                            ; Off        ; Off           ;
+; Disable timing delays in Timing Simulation                                                 ; Off        ; Off           ;
+; Generate Signal Activity File                                                              ; Off        ; Off           ;
+; Generate VCD File for PowerPlay Power Analyzer                                             ; Off        ; Off           ;
+; Group bus channels in simulation results                                                   ; Off        ; Off           ;
+; Preserve fewer signal transitions to reduce memory requirements                            ; On         ; On            ;
+; Trigger vector comparison with the specified mode                                          ; INPUT_EDGE ; INPUT_EDGE    ;
+; Disable setup and hold time violations detection in input registers of bi-directional pins ; Off        ; Off           ;
+; Overwrite Waveform Inputs With Simulation Outputs                                          ; Off        ;               ;
+; Perform Glitch Filtering in Timing Simulation                                              ; Auto       ; Auto          ;
++--------------------------------------------------------------------------------------------+------------+---------------+
+
+
++----------------------+
+; Simulation Waveforms ;
++----------------------+
+Waveform report data cannot be output to ASCII.
+Please use Quartus II to view the waveform report data.
+
+
++--------------------------------------------------------------------+
+; Coverage Summary                                                   ;
++-----------------------------------------------------+--------------+
+; Type                                                ; Value        ;
++-----------------------------------------------------+--------------+
+; Total coverage as a percentage                      ;      78.57 % ;
+; Total nodes checked                                 ; 43           ;
+; Total output ports checked                          ; 42           ;
+; Total output ports with complete 1/0-value coverage ; 33           ;
+; Total output ports with no 1/0-value coverage       ; 9            ;
+; Total output ports with no 1-value coverage         ; 9            ;
+; Total output ports with no 0-value coverage         ; 9            ;
++-----------------------------------------------------+--------------+
+
+
+The following table displays output ports that toggle between 1 and 0 during simulation.
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Complete 1/0-Value Coverage                                                                                                                            ;
++------------------------------------------------------------------+------------------------------------------------------------------+------------------+
+; Node Name                                                        ; Output Port Name                                                 ; Output Port Type ;
++------------------------------------------------------------------+------------------------------------------------------------------+------------------+
+; |iis|clkdiva                                                     ; |iis|clkdiva                                                     ; regout           ;
+; |iis|mclk2~101                                                   ; |iis|mclk2~101                                                   ; combout          ;
+; |iis|mclk2~102                                                   ; |iis|mclk2~102                                                   ; combout          ;
+; |iis|bckout~18                                                   ; |iis|bckout~18                                                   ; combout          ;
+; |iis|lrckout2~reg0                                               ; |iis|lrckout2~reg0                                               ; regout           ;
+; |iis|bckout2~9                                                   ; |iis|bckout2~9                                                   ; combout          ;
+; |iis|clkin                                                       ; |iis|clkin                                                       ; combout          ;
+; |iis|cntl[0]                                                     ; |iis|cntl[0]~34                                                  ; cout0            ;
+; |iis|cntl[0]                                                     ; |iis|cntl[0]~34COUT1_57                                          ; cout1            ;
+; |iis|cntl[1]                                                     ; |iis|cntl[1]~36                                                  ; cout0            ;
+; |iis|cntl[1]                                                     ; |iis|cntl[1]~36COUT1_59                                          ; cout1            ;
+; |iis|cntl[2]                                                     ; |iis|cntl[2]~38                                                  ; cout0            ;
+; |iis|cntl[2]                                                     ; |iis|cntl[2]~38COUT1_61                                          ; cout1            ;
+; |iis|cntl[3]                                                     ; |iis|cntl[3]~40                                                  ; cout0            ;
+; |iis|cntl[3]                                                     ; |iis|cntl[3]~40COUT1_63                                          ; cout1            ;
+; |iis|LessThan0~97                                                ; |iis|cntl[0]_RTM063                                              ; regout           ;
+; |iis|mclk128fs~21                                                ; |iis|mclk128fs~21                                                ; combout          ;
+; |iis|mclk128fs                                                   ; |iis|mclk128fs                                                   ; combout          ;
+; |iis|clkin45                                                     ; |iis|clkin45~corein                                              ; combout          ;
+; |iis|clkin49                                                     ; |iis|clkin49~corein                                              ; combout          ;
+; |iis|mclk2                                                       ; |iis|mclk2                                                       ; padio            ;
+; |iis|bckout                                                      ; |iis|bckout                                                      ; padio            ;
+; |iis|lrckout                                                     ; |iis|lrckout                                                     ; padio            ;
+; |iis|bckout2                                                     ; |iis|bckout2                                                     ; padio            ;
+; |iis|lrckout2                                                    ; |iis|lrckout2                                                    ; padio            ;
+; |iis|cntl[4]_RTM066                                              ; |iis|cntl[4]_RTM066                                              ; regout           ;
+; |iis|lrclk_RTM076                                                ; |iis|lrclk_RTM076                                                ; regout           ;
+; |iis|lrclk_RTM076_RTM089                                         ; |iis|lrclk_RTM076_RTM089                                         ; regout           ;
+; |iis|lrclk_RTM076_RTM089_RTM0104                                 ; |iis|lrclk_RTM076_RTM089_RTM0104                                 ; regout           ;
+; |iis|lrclk_RTM076_RTM089_RTM0104_RTM0123                         ; |iis|lrclk_RTM076_RTM089_RTM0104_RTM0123                         ; regout           ;
+; |iis|lrclk_RTM076_RTM089_RTM0104_RTM0123_RTM0142                 ; |iis|lrclk_RTM076_RTM089_RTM0104_RTM0123_RTM0142                 ; regout           ;
+; |iis|lrclk_RTM076_RTM089_RTM0104_RTM0123_RTM0142_RTM0164         ; |iis|lrclk_RTM076_RTM089_RTM0104_RTM0123_RTM0142_RTM0164         ; regout           ;
+; |iis|lrclk_RTM076_RTM089_RTM0104_RTM0123_RTM0142_RTM0164_RTM0187 ; |iis|lrclk_RTM076_RTM089_RTM0104_RTM0123_RTM0142_RTM0164_RTM0187 ; regout           ;
++------------------------------------------------------------------+------------------------------------------------------------------+------------------+
+
+
+The following table displays output ports that do not toggle to 1 during simulation.
++-------------------------------------------------------------+
+; Missing 1-Value Coverage                                    ;
++-----------------+------------------------+------------------+
+; Node Name       ; Output Port Name       ; Output Port Type ;
++-----------------+------------------------+------------------+
+; |iis|clks1      ; |iis|clks1~corein      ; combout          ;
+; |iis|clks0      ; |iis|clks0~corein      ; combout          ;
+; |iis|bckcontrol ; |iis|bckcontrol~corein ; combout          ;
+; |iis|rstin      ; |iis|rstin~corein      ; combout          ;
+; |iis|f3_i       ; |iis|f3_i~corein       ; combout          ;
+; |iis|mcu_o      ; |iis|mcu_o~corein      ; combout          ;
+; |iis|clkfsel    ; |iis|clkfsel~corein    ; combout          ;
+; |iis|mcu_i      ; |iis|mcu_i             ; padio            ;
+; |iis|dat_o      ; |iis|dat_o             ; padio            ;
++-----------------+------------------------+------------------+
+
+
+The following table displays output ports that do not toggle to 0 during simulation.
++-------------------------------------------------------------+
+; Missing 0-Value Coverage                                    ;
++-----------------+------------------------+------------------+
+; Node Name       ; Output Port Name       ; Output Port Type ;
++-----------------+------------------------+------------------+
+; |iis|clks1      ; |iis|clks1~corein      ; combout          ;
+; |iis|clks0      ; |iis|clks0~corein      ; combout          ;
+; |iis|bckcontrol ; |iis|bckcontrol~corein ; combout          ;
+; |iis|rstin      ; |iis|rstin~corein      ; combout          ;
+; |iis|f3_i       ; |iis|f3_i~corein       ; combout          ;
+; |iis|mcu_o      ; |iis|mcu_o~corein      ; combout          ;
+; |iis|clkfsel    ; |iis|clkfsel~corein    ; combout          ;
+; |iis|mcu_i      ; |iis|mcu_i             ; padio            ;
+; |iis|dat_o      ; |iis|dat_o             ; padio            ;
++-----------------+------------------------+------------------+
+
+
++---------------------+
+; Simulator INI Usage ;
++--------+------------+
+; Option ; Usage      ;
++--------+------------+
+
+
++--------------------+
+; Simulator Messages ;
++--------------------+
+Info: *******************************************************************
+Info: Running Quartus II Simulator
+    Info: Version 8.1 Build 163 10/28/2008 SJ Full Version
+    Info: Processing started: Fri Jun 05 16:47:10 2020
+Info: Command: quartus_sim --read_settings_files=on --write_settings_files=off iis -c iis
+Info: Using vector source file "Y:/À¬»ø¶Ñ/¹¤³Ì/FPGA/i2s_divider_505/iis.vwf"
+Warning: Can't find signal in vector source file for input pin "|iis|f3_i"
+Warning: Can't find signal in vector source file for input pin "|iis|mcu_o"
+Info: Inverted registers were found during simulation
+    Info: Register: |iis|lrclk
+Info: Option to preserve fewer signal transitions to reduce memory requirements is enabled
+    Info: Simulation has been partitioned into sub-simulations according to the maximum transition count determined by the engine. Transitions from memory will be flushed out to disk at the end of each sub-simulation to reduce memory requirements.
+Info: Simulation partitioned into 1 sub-simulations
+Info: Simulation coverage is      78.57 %
+Info: Number of transitions in simulation is 1305447
+Info: Quartus II Simulator was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 174 megabytes
+    Info: Processing ended: Fri Jun 05 16:47:14 2020
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:04
+
+

@@ -1,0 +1,44 @@
+<internal_error>
+	<executable>quartus.exe</executable>
+	<sub_system>unknown</sub_system>
+	<file>unknown</file>
+	<line>0</line>
+	<callstack>
+	0x7c15af79: MFC71 + 0x1af79 (Ordinal1085 + 0x2c)
+	0x7c168f0c: MFC71 + 0x28f0c (Ordinal2375 + 0x6)
+	0x7c16e1f5: MFC71 + 0x2e1f5 (Ordinal1209 + 0x78)
+	0x77e2b6e2: USER32 + 0x1b6e2 (LoadCursorW + 0x4cf4)
+	0x77e2b873: USER32 + 0x1b873 (LoadCursorW + 0x4e85)
+	0x77e2c8b7: USER32 + 0x1c8b7 (GetMessageW + 0x9e)
+	0x77e2c9c5: USER32 + 0x1c9c5 (GetClientRect + 0x49)
+	0x7c958535: ntdll + 0x28535 (KiUserCallbackDispatcher + 0x2d)
+	0x1000b3fc: GCL_AFC + 0xb3fc (?OnWndMsg@AFC_DIALOG@@UAEHIIJPAJ@Z + 0x3c)
+	0x7c16e0af: MFC71 + 0x2e0af (Ordinal6275 + 0x21)
+	0x7c16e14e: MFC71 + 0x2e14e (Ordinal1028 + 0x7c)
+	0x7c16e1b7: MFC71 + 0x2e1b7 (Ordinal1209 + 0x3a)
+	0x7c16e1f5: MFC71 + 0x2e1f5 (Ordinal1209 + 0x78)
+	0x77e2b6e2: USER32 + 0x1b6e2 (LoadCursorW + 0x4cf4)
+	0x77e2b873: USER32 + 0x1b873 (LoadCursorW + 0x4e85)
+	0x77e2c2d2: USER32 + 0x1c2d2 (IsWindow + 0x147)
+	0x77e1cf28: USER32 + 0xcf28 (SendMessageA + 0x48)
+	0x00a25c0b: GCL_CUI + 0x5c0b (?relay_mouse_message_to_view@CUI_TOOLTIP@@IAIXHVCPoint@@@Z + 0x4b)
+	0x7c16e0af: MFC71 + 0x2e0af (Ordinal6275 + 0x21)
+	0x7c16e14e: MFC71 + 0x2e14e (Ordinal1028 + 0x7c)
+	0x7c16e1b7: MFC71 + 0x2e1b7 (Ordinal1209 + 0x3a)
+	0x7c16e1f5: MFC71 + 0x2e1f5 (Ordinal1209 + 0x78)
+	0x77e2b6e2: USER32 + 0x1b6e2 (LoadCursorW + 0x4cf4)
+	0x77e2b873: USER32 + 0x1b873 (LoadCursorW + 0x4e85)
+	0x77e2c2d2: USER32 + 0x1c2d2 (IsWindow + 0x147)
+	0x77e1cf28: USER32 + 0xcf28 (SendMessageA + 0x48)
+	0x08e25340: prj_ppl + 0x25340 (prj_ppl_dll_get_template_classes + 0xf360)
+	0x7e280004:
+	0x3ce73c99:
+	</callstack>
+	<error>Current editor: RPW, STED</error>
+	<date>Thu Dec 06 20:43:56 2012</date>
+	<version>Quartus II Version 8.1 Build 163 10/28/2008 SJ Full Version</version>
+	<full_error>Stack Overflow
+Current editor: RPW, STED
+Quartus II Version 8.1 Build 163 10/28/2008 SJ Full Version </full_error>
+</internal_error>
+
